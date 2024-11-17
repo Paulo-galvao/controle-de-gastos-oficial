@@ -1,0 +1,41 @@
+<h2>Rota de categorias</h2>
+
+
+<a href="/user/category/store/{{data.user._id}}">Adicionar nova categoria</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Valor Total</th>
+            <th>Opções</th>
+        </tr>        
+    </thead>
+    <tbody>
+        {{#each data.categories}}
+        <tr>
+            <td>
+                <a href=""> {{name}}</a>
+            </td>
+            <td>{{total_price}}</td>
+            <td>
+                <a href="/user/product/dashboard/{{_id}}">
+                    <button>Produtos</button>
+                </a>
+            </td>
+            <td>
+                <a href="/user/category/update/{{_id}}">
+                    <button>Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/user/category/destroy/{{_id}}">
+                    <button>Excluir</button>
+                </a>
+            </td>
+        </tr>
+        
+        
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,6 @@
+<span>Tem certeza que deseja excluir o usuário {{data.name}}?</span>
+<form method="post" action="/user/destroy">
+    <input type="hidden" name="id" value="{{data._id}}">
+    <button type="submit">Sim</button>
+</form>
+<a href="/user/dashboard">Não</a>

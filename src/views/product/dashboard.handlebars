@@ -1,0 +1,33 @@
+<h2>rota de produtos</h2>
+
+<a href="/user/product/store/{{data.category._id}}">Adcionar novo produto</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+
+        {{#each data.products}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{price}}</td>
+            <td>
+                <a href="/user/product/update/{{_id}}">
+                    <button>Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/user/product/destroy/{{_id}}">
+                    <button>Excluir</button>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
