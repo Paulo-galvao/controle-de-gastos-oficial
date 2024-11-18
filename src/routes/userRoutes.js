@@ -103,7 +103,8 @@ router.post('/category/store', async (req, res) => {
 
 router.get('/category/update/:id', async (req, res) => {
     try {
-        res.render('category/update' , {id: req.params.id});
+        const category = await Category.findById(req.params.id)
+        res.render('category/update' , {data: {id: req.params.id, category: category.name}});
     } catch (error) {
         console.log(error.message);
         
@@ -202,7 +203,8 @@ router.post('/product/store', async (req, res) => {
 
 router.get('/product/update/:id', async (req, res) => {
     try {
-        res.render('product/update' , {id: req.params.id});
+        const product = await Product.findById(req.params.id);
+        res.render('product/update' , {data: {id: req.params.id, name: product.name, price: product.price}});
     } catch (error) {
         console.log(error.message);
         

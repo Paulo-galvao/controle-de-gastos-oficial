@@ -1,41 +1,39 @@
-<h2>Rota de categorias</h2>
+<div class="container">
 
+    <a href="/user/category/store/{{data.user._id}}">
+    <button class="main-btn btn-2">Adicionar nova categoria</button>
+    </a>
 
-<a href="/user/category/store/{{data.user._id}}">Adicionar nova categoria</a>
-
-<table>
-    <thead>
-        <tr>
-            <th>Categoria</th>
-            <th>Valor Total</th>
-            <th>Opções</th>
-        </tr>        
-    </thead>
-    <tbody>
-        {{#each data.categories}}
-        <tr>
-            <td>
-                <a href=""> {{name}}</a>
-            </td>
-            <td>{{total_price}}</td>
-            <td>
-                <a href="/user/product/dashboard/{{_id}}">
-                    <button>Produtos</button>
-                </a>
-            </td>
-            <td>
-                <a href="/user/category/update/{{_id}}">
-                    <button>Editar</button>
-                </a>
-            </td>
-            <td>
-                <a href="/user/category/destroy/{{_id}}">
-                    <button>Excluir</button>
-                </a>
-            </td>
-        </tr>
-        
-        
-        {{/each}}
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Valor Total</th>
+                <th>Opções</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {{#each data.categories}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{total_price}}</td>
+                <td>
+                    <a href="/user/product/dashboard/{{_id}}">
+                        <button class="main-btn">Produtos</button>
+                    </a>
+                    <a href="/user/category/update/{{_id}}">
+                        <button class="btn-edit">
+                            <i class='bx bxs-edit-alt'></i>
+                        </button>
+                    </a>
+                    <a href="/user/category/destroy/{{_id}}">
+                        <button class="btn-delete">
+                            <i class='bx bxs-trash-alt'></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

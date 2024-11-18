@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+/*
+  * Buttons
+*/
+
+.main-btn {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4682B4;
+    color: #fff;
+}
+
+.btn-2 {
+    width: 200px;
+}
+
+.btn-3 {
+    min-width: 70px;
+    padding: 5px;
+}
+
+.btn-delete {
+    background: #D22B2B;
+    color: #fff;
+    width: 33px;
+    border-radius: 5px;
+    border: none;
+    height: 33px;
+}
+
+.btn-edit {
+    background: #088F8F;
+    color: #fff;
+    width: 33px;
+    border-radius: 5px;
+    border: none;
+    height: 33px;
+}
+
+.btn-delete:hover {
+    background-color: rgb(210, 43, 43, .8);
+}
+
+.btn-edit:hover {
+    background-color: rgb(8, 143, 143, .8);
+
+}
+
+.main-btn:hover {
+    background-color: rgb(70, 130, 180, .8);
+    transition: .4s;
+}
+
+.btn-store {
+    
+}
+
+/*
+  * Forms
+*/
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+label {
+    font-size: .8em;    
+}
+
+input {
+    width: 250px;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+}
+
+/*
+  * General
+*/
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/*
+  * Table
+*/
+
+table {
+    margin-top: 30px;
+}
+
+td, th {
+    padding: 10px;
+    min-width: 140px;
+    border: 1px solid black;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.td-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+/*
+  * Header
+*/
+
+header {
+    border-bottom: 1px solid #7393B3;
+}
+
+header ul {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+header ul a {
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #4682B4;
+}
+
+header ul a:hover {
+    border-bottom: 2px solid #4682B4;
+
+}
+
+.container {
+    width: 100vw;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    position: relative;
+    top: 50px;
+}
+
+.home-img {
+    max-width: 300px;
+}

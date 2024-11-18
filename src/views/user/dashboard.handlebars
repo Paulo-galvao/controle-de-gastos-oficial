@@ -1,35 +1,35 @@
-<h2>Rota de usuario</h2>
-
 {{#each data}}
 <input type="hidden" name="id" value="{{_id}}">
 {{/each}}
-<a href="/user/store">Adicionar novo usuário</a>
+<div class="container">
+    <a href="/user/store">
+        <button class="main-btn btn-2">Adicionar novo usuário</button>
+    </a>
 
-<table>
-    <thead>
-        <tr>
-            <th>Usuário</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>
+    <table>
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{name}}</td>
+                <td class="td-options">
+                    <a href="/user/category/dashboard/{{_id}}">
+                        <button class="main-btn btn-3">Categorias</button>
+                    </a>
+                    <a href="/user/destroy/{{_id}}">
+                        <button class="btn-delete">
+                            <i class='bx bxs-trash-alt'></i>
+                        </button>
+                    </a>
+                </td>
                 
-                <a href=""> {{name}}</a>
-                
-            </td>
-            <td>
-                <a href="/user/category/dashboard/{{_id}}">
-                    <button>Categorias</button>
-                </a>
-            </td>
-            <td>
-                <a href="/user/destroy/{{_id}}">
-                    <button>Excluir</button>
-                </a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

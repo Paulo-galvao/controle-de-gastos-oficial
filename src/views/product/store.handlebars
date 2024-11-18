@@ -1,13 +1,17 @@
-<form action="/user/product/store" method="post">
+<div class="container">
 
-    <label for="name">Produto: </label>
-    <input type="text" name="name">
+    <form action="/user/product/store" method="post">
 
-    <label for="price">Valor: </label>
-    <input type="text" name="price">
+        <label for="name">Produto: </label>
+        <input type="text" name="name">
 
-    <input type="hidden" name="category" value="{{id}}">
+        <label for="price">Valor: </label>
+        <input type="text" name="price">
 
-    <button type="submit">Enviar</button>
+        <input type="hidden" name="category" value="{{id}}">
 
-</form>
+        <button class="main-btn btn-2" type="submit">Enviar</button>
+
+    </form>
+
+</div>

@@ -20,7 +20,7 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', 'src/views');
 // Static
-app.use(e.static('public'));
+app.use(e.static('src/public'));
 /**
  * Routes
  */

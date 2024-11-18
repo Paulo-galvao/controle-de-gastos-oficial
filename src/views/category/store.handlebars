@@ -1,10 +1,12 @@
-<h2>postar nova Categoria</h2>
+<div class="container">
 
-<form method="post" action="/user/category/store">
+    <form method="post" action="/user/category/store">
 
-    <label for="name">Nome da Categoria: </label>
-    <input type="text" name="name">
-    <input type="hidden" name="user" value="{{id}}">
+        <label for="name">Nome da Categoria: </label>
+        <input type="text" name="name">
+        <input type="hidden" name="user" value="{{id}}">
 
-    <button type="submit">Enviar</button>
-</form>
+        <button class="main-btn store-btn" type="submit">Enviar</button>
+    </form>
+
+</div>
