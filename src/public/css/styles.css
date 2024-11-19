@@ -16,6 +16,16 @@
     border-radius: 5px;
     background-color: #4682B4;
     color: #fff;
+    
+}
+
+.main-btn.refuse {
+    background-color: #D22B2B;
+}
+
+.main-btn.refuse:hover {
+    background-color: rgb(210, 43, 43, .8);
+    transition: .4s;
 }
 
 .btn-2 {
@@ -47,20 +57,17 @@
 
 .btn-delete:hover {
     background-color: rgb(210, 43, 43, .8);
+    transition: .4s;
 }
 
 .btn-edit:hover {
     background-color: rgb(8, 143, 143, .8);
-
+    transition: .4s;
 }
 
 .main-btn:hover {
     background-color: rgb(70, 130, 180, .8);
     transition: .4s;
-}
-
-.btn-store {
-    
 }
 
 /*
@@ -71,6 +78,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 button {
@@ -81,6 +89,7 @@ button {
 
 label {
     font-size: .8em;    
+    align-self: start;
 }
 
 input {
@@ -169,6 +178,31 @@ header ul a:hover {
     top: 50px;
 }
 
+/*
+    * Error
+ */
+
+ @keyframes appear {
+    from {
+        top: -15px;
+        opacity: 0.2;
+    } to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.error-msg {
+    background-color: #F88379;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 20px 10px;
+    position: relative;
+    animation: appear .7s forwards;
+}
+
 .home-img {
     max-width: 300px;
 }
+

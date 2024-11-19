@@ -4,9 +4,13 @@
 
         <label for="name">Nome da Categoria: </label>
         <input type="text" name="name">
-        <input type="hidden" name="user" value="{{id}}">
+        <input type="hidden" name="user" value="{{data.id}}">
 
         <button class="main-btn store-btn" type="submit">Enviar</button>
     </form>
+
+    {{#each data.errors}}
+        <div class="error-msg">{{text}}: Por favor preencha todos os campos</div>
+    {{/each}}
 
 </div>

@@ -1,6 +1,12 @@
-<span>Tem certeza que deseja excluir a categoria {{data.name}}?</span>
-<form method="post" action="/user/category/destroy">
-    <input type="hidden" name="id" value="{{data._id}}">
-    <button type="submit">Sim</button>
-</form>
-<a href="/user/dashboard">Não</a>
+<div class="container">
+
+    <span>Tem certeza que deseja excluir a categoria {{data.name}}?</span>
+    <form method="post" action="/user/category/destroy">
+        <input type="hidden" name="id" value="{{data._id}}">
+        <button class="main-btn" type="submit">Sim</button>
+    </form>
+    <a href="/user/dashboard">
+        <button class="main-btn refuse">Não</button>
+    </a>
+
+</div>

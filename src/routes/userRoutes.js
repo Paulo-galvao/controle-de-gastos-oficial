@@ -30,13 +30,29 @@ router.get('/store', async (req, res) => {
 });
 
 router.post('/store', async (req, res) => {
-    try {
-        const user = await User.create(req.body);
-        res.redirect('/user/dashboard');
-    } catch (error) {
-        console.log(error.message);
-        
+
+    const errors = [];
+
+    if( !req.body.name ||
+    typeof req.body.name == undefined || 
+    typeof req.body.name == null) {
+            errors.push({ text: "Nome inválido"});
     }
+
+    if(errors.length > 0) {
+        res.render('user/store', {errors: errors});
+    } else {
+
+        try {
+            const user = await User.create(req.body);
+            res.redirect('/user/dashboard');
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+
+    }
+
 });
 
 // excluir usuário
@@ -82,7 +98,9 @@ router.get('/category/dashboard/:id', async (req, res) => {
 // adicionar nova categoria
 router.get('/category/store/:id', async (req, res) => {
     try {
-        res.render('category/store' , {id: req.params.id});
+        res.render('category/store' , {data: {
+            id: req.params.id
+        }});
     } catch (error) {
         console.log(error.message);
         
@@ -90,12 +108,31 @@ router.get('/category/store/:id', async (req, res) => {
 });
 
 router.post('/category/store', async (req, res) => {
-    try {
-        await Category.create(req.body);
-        res.redirect('/user/dashboard');
-    } catch (error) {
-        console.log(error.message);
+
+    const errors = [];
+
+    if( !req.body.name ||
+    typeof req.body.name == undefined || 
+    typeof req.body.name == null) {
+        errors.push({ text: "Nome inválido"});
+    }  
+
+    if(errors.length > 0) {
+        res.render('category/store', {data: {
+            id: req.body.user,
+            errors: errors 
+        }});        
+    } else {
         
+        try {
+            await Category.create(req.body);
+            
+            res.redirect('/user/dashboard');
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+
     }
 });
 
@@ -112,16 +149,37 @@ router.get('/category/update/:id', async (req, res) => {
 });
 
 router.post('/category/update', async (req, res) => {
-    try {
-        const content = await Category.findByIdAndUpdate(req.body.id, req.body).exec();
-        res.redirect('/user/dashboard');
-        console.log(content);
-        
-        
-    } catch (error) {
-        console.log(error.message);
-        
+
+    const category = await Category.findById(req.body.id).lean();
+
+    const errors = [];
+
+    if( !req.body.name ||
+    typeof req.body.name == undefined || 
+    typeof req.body.name == null) {
+            errors.push({ text: "Nome inválido"});
     }
+
+    if(errors.length > 0) {
+        res.render('category/update', {data: {
+            id: req.body.id,
+            errors: errors,
+            category: category.name
+        }});        
+    } else {
+        
+        try {
+            const content = await Category.findByIdAndUpdate(req.body.id, req.body).exec();
+            res.redirect('/user/dashboard');
+            
+            
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+
+    }
+
 }); 
 
 // excluir categoria
@@ -157,7 +215,11 @@ router.get('/product/dashboard/:id', async (req, res) => {
         const category = await Category.findById(req.params.id).lean();
         const products = await Product.find({category: req.params.id}).lean();
         
-        res.render('product/dashboard', {data: {category, products}});
+        res.render('product/dashboard', {data: {
+            id: req.params.id,
+            category,
+            products
+        }});
     } catch (error) {
         
     }
@@ -167,7 +229,10 @@ router.get('/product/dashboard/:id', async (req, res) => {
 
 router.get('/product/store/:id', async (req, res) => {
     try {
-        res.render('product/store', {id: req.params.id});
+        res.render('product/store', {data: {
+            id: req.params.id,
+
+        }});
     } catch (error) {
         console.log(error.message);
         
@@ -175,28 +240,58 @@ router.get('/product/store/:id', async (req, res) => {
 });
 
 router.post('/product/store', async (req, res) => {
-    try {
-        // armazenar produto       
-        await Product.create(req.body);
-        
-        // calcular total da categoria
-        const productCategory = req.body.category;
-        const category = await Category.findById(productCategory).exec();
-        const products = await Product.find({category: productCategory}).exec();
 
-        let totalPrice = 0;
+    const errors = [];
 
-        const productsPrices = products.map( p => p.price);
-        productsPrices.forEach( p => totalPrice += p);
-
-        category.total_price = totalPrice;
-        await category.save();
-
-        res.redirect('/user/dashboard');
-    } catch (error) {
-        console.log(error.message);
-        
+    if( !req.body.name ||
+    typeof req.body.name == undefined || 
+    typeof req.body.name == null) {
+            errors.push({ text: "Nome inválido"});
     }
+
+    if(!req.body.price ||
+        typeof req.body.price == undefined ||
+        typeof req.body.price == null
+    ) {
+        errors.push({ text: "Valor inválido"});
+
+    }
+
+    
+    
+
+    if(errors.length > 0) {
+        res.render('product/store', {data: {
+            errors: errors,
+            id: req.body.category
+        }});        
+    } else {
+
+        try {
+            // armazenar produto       
+            await Product.create(req.body);
+            
+            // calcular total da categoria
+            const productCategory = req.body.category;
+            const category = await Category.findById(productCategory).exec();
+            const products = await Product.find({category: productCategory}).exec();
+    
+            let totalPrice = 0;
+    
+            const productsPrices = products.map( p => p.price);
+            productsPrices.forEach( p => totalPrice += p);
+    
+            category.total_price = totalPrice;
+            await category.save();
+    
+            res.redirect('/user/dashboard');
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+
+    }
+
 });
 
 // atualizar produto
@@ -212,34 +307,65 @@ router.get('/product/update/:id', async (req, res) => {
 });
 
 router.post('/product/update', async (req, res) => {
-    try {
-        // atualizar roduto
-        await Product.findByIdAndUpdate(req.body.id, req.body).exec();
-        
-        // atualizar valor da categoria
-        const product = await Product.findById(req.body.id).exec();
-        const productCategory = product.category;
-        const category = await Category.findById(productCategory).exec();
-        const products = await Product.find({category: productCategory}).exec();
-        
-        console.log(category);
-        
-        let totalPrice = 0;
-        
-        const productsPrices = products.map( p => p.price);
-        productsPrices.forEach( p => totalPrice += p);
 
-        category.total_price = totalPrice;
-        await category.save();
+    const product = await Product.findById(req.body.id).lean();
 
-        res.redirect('/user/dashboard');
-       
-        
-        
-    } catch (error) {
-        console.log(error.message);
-        
+    console.log(product.category);
+    
+
+    const errors = [];
+
+    if( !req.body.name ||
+    typeof req.body.name == undefined || 
+    typeof req.body.name == null) {
+            errors.push({ text: "Nome inválido"});
     }
+
+    if(!req.body.price ||
+        typeof req.body.price == undefined ||
+        typeof req.body.price == null
+    ) {
+        errors.push({ text: "Valor inválido"});
+
+    }
+
+    if(errors.length > 0) {
+        res.render('product/update', {data: {
+            id: req.body.id,
+            errors: errors,
+            product: product.name
+        }});        
+    } else {
+
+        try {
+            // atualizar roduto
+            await Product.findByIdAndUpdate(req.body.id, req.body).exec();
+            
+            // atualizar valor da categoria
+            const product = await Product.findById(req.body.id).exec();
+            const productCategory = product.category;
+            const category = await Category.findById(productCategory).exec();
+            const products = await Product.find({category: productCategory}).exec();
+            
+            let totalPrice = 0;
+            
+            const productsPrices = products.map( p => p.price);
+            productsPrices.forEach( p => totalPrice += p);
+    
+            category.total_price = totalPrice;
+            await category.save();
+    
+            res.redirect('/user/dashboard');
+           
+            
+            
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+
+    }
+
 }); 
 
 // excluir produto

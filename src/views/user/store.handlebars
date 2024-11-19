@@ -6,5 +6,9 @@
 
         <button class="main-btn" type="submit">Enviar</button>
     </form>
+    
+    {{#each errors}}
+        <div class="error-msg">{{text}}: Por Favor preencha todos os campos</div>
+    {{/each}}
 
 </div>

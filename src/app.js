@@ -1,5 +1,7 @@
 import e from "express";
 import { engine } from "express-handlebars";
+import session from "express-session";
+import flash from "connect-flash";
 import 'dotenv/config';
 
 import userRoutes from './routes/userRoutes.js';
@@ -21,6 +23,19 @@ app.set('view engine', 'handlebars');
 app.set('views', 'src/views');
 // Static
 app.use(e.static('src/public'));
+// Session
+app.use(session({
+    secret: "finance-control",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
+
 /**
  * Routes
  */
@@ -33,7 +48,8 @@ app.use('/user', userRoutes);
 // app.use('/product', productRoutes);
 // app.use('/category', categoryRoutes);
 
+
+
 app.listen(port, () => {
-    console.log("Server running at port", port);
-    
-})
+    console.log("Server running at port", port);    
+});

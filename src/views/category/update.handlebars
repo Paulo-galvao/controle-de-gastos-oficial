@@ -9,4 +9,8 @@
         <button class="main-btn btn-3" type="submit">Enviar</button>
     </form>
 
+    {{#each data.errors}}
+        <div class="error-msg">{{text}}: Por favor preencha todos os campos</div>
+    {{/each}}
+
 </div>

@@ -8,10 +8,14 @@
         <label for="price">Valor: </label>
         <input type="text" name="price">
 
-        <input type="hidden" name="category" value="{{id}}">
+        <input type="hidden" name="category" value="{{data.id}}">
 
         <button class="main-btn btn-2" type="submit">Enviar</button>
 
     </form>
+
+    {{#each data.errors}}
+        <div class="error-msg">{{text}}: Por favor preencha todos os campos</div>
+    {{/each}}
 
 </div>

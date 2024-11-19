@@ -2,7 +2,10 @@ import conn from "../config/conn.js";
 const Schema = conn.Schema;
 
 const categorySchema = new Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
     total_price: {
         type: Number,
         default: 0

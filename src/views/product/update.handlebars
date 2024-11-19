@@ -1,13 +1,21 @@
-<form action="/user/product/update" method="post">
+<div class="container">
 
-    <label for="name">Produto: </label>
-    <input type="text" name="name" value="{{data.name}}">
+    <form action="/user/product/update" method="post">
 
-    <label for="price">Valor: </label>
-    <input type="text" name="price" value="{{data.price}}">
+        <label for="name">Produto: </label>
+        <input type="text" name="name" value="{{data.name}}">
 
-    <input type="hidden" name="id" value="{{data.id}}">
+        <label for="price">Valor: </label>
+        <input type="text" name="price" value="{{data.price}}">
 
-    <button type="submit">Atualizar</button>
+        <input type="hidden" name="id" value="{{data.id}}">
 
-</form>
+        <button class="main-btn btn-3" type="submit">Atualizar</button>
+   
+    </form>
+
+    {{#each data.errors}}
+        <div class="error-msg">{{text}}: Por favor preencha todos os campos</div>
+    {{/each}}
+
+</div>
