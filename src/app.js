@@ -4,9 +4,9 @@ import session from "express-session";
 import flash from "connect-flash";
 import 'dotenv/config';
 
-import userRoutes from './routes/userRoutes.js';
-// import productRoutes from './models/Product.js';
-// import categoryRoutes from './models/Category.js';
+import userRoutes from './routes/user.routes.js';
+import productRoutes from './routes/product.routes.js';
+import categoryRoutes from './routes/category.routes.js';
 
 const port = process.env.API_PORT;
 
@@ -45,10 +45,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoutes);
-// app.use('/product', productRoutes);
-// app.use('/category', categoryRoutes);
-
-
+app.use('/user/product', productRoutes);
+app.use('/user/category', categoryRoutes);
 
 app.listen(port, () => {
     console.log("Server running at port", port);    

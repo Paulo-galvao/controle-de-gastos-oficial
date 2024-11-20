@@ -16,6 +16,10 @@ const categorySchema = new Schema({
     }
 });
 
+categorySchema.pre('save', function() {
+    this.total_price = this.total_price.toFixed(2);
+})
+
 const Category = conn.model("Category", categorySchema);
 
 export default Category;

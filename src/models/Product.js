@@ -16,6 +16,10 @@ const productSchema = new Schema({
     }
 });
 
+productSchema.pre('save', function() {
+    this.price = this.price.toFixed(2);
+});
+
 const Product = conn.model("Product", productSchema);
 
 export default Product;
