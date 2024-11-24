@@ -46,6 +46,10 @@ async function store(req, res) {
 
     }
 
+    if(isNaN(req.body.price)) {
+        errors.push({ text: "Valor inválido: o campo precisa ser preenchido por um número"});
+    }
+
     if(errors.length > 0) {
         res.render('product/store', {data: {
             errors: errors,
@@ -109,6 +113,10 @@ async function update(req, res) {
     ) {
         errors.push({ text: "Valor inválido"});
 
+    }
+
+    if(isNaN(req.body.price)) {
+        errors.push({ text: "Valor inválido: o campo precisa ser preenchido por um número"});
     }
 
     if(errors.length > 0) {

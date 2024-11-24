@@ -55,7 +55,6 @@ async function getDestroy(req, res) {
 async function destroy(req, res) {
     try {        
         const user = await User.findByIdAndDelete(req.body.id).lean();
-        console.log(user);
         
         res.redirect('/user/dashboard');
     } catch (error) {
