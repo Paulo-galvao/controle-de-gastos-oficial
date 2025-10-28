@@ -94,10 +94,7 @@ async function getUpdate(req, res) {
 }
 
 async function update(req, res) {
-    const product = await Product.findById(req.body.id).lean();
-
-    console.log(product.category);
-    
+    const product = await Product.findById(req.body.id).lean();    
 
     const errors = [];
 
